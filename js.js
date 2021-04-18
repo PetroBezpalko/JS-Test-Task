@@ -35,11 +35,20 @@ let list = fetch("./list.json")
       let films = data.filter((film) => {
         return film.name.match(reg);
       });
-      let options = films
-        .map((film) => {
-          return `<option value=${film.name}>${film.name}</option>`;
-        })
-        .join("\n");
-      select[1].innerHTML = options;
+      if (inputLetter === "") {
+        alert("Please, choose a letter.");
+      } else if (films.length === 0) {
+        alert(
+          "Sorry, there is no film which name starts with the letter you specified. Please, choose another letter."
+        );
+      } else {
+        let options = films
+          .map((film) => {
+            return `<option value=${film.name}>${film.name}</option>`;
+          })
+          .join("\n");
+        select[1].innerHTML = options;
+      }
     });
   });
+
