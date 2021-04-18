@@ -28,7 +28,8 @@ let list = fetch("./list.json")
     return resp.json();
   })
   .then(function (data) {
-    console.log(data);
+    console.log(data.length);
+    console.log(data[1]);
     return data;
   });
 
@@ -36,8 +37,8 @@ submitBtn.addEventListener("click", () => {
   let inputLetter = select[0].value;
   let re = `^${inputLetter}`;
   let reg = new RegExp(re);
-  console.log(list[1]);
-  let films = list[0].filter((film) => {
+  console.log(list.length);
+  let films = list.filter((film) => {
     return film.name.match(reg);
   });
   let options = films
