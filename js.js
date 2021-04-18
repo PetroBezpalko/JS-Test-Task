@@ -32,7 +32,7 @@ submitBtn.addEventListener("click", () => {
   let inputLetter = select[0].value;
   let re = `^${inputLetter}`;
   let reg = new RegExp(re);
-  let films = list.filter((film) => {
+  let films = list[0].filter((film) => {
     return film.name.match(reg);
   });
   let options = films
