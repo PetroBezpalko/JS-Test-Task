@@ -20,22 +20,28 @@ function selectOptions() {
     .join("\n");
   select[0].innerHTML = select[0].innerHTML + options;
 }
+
 selectOptions();
 
-let films = ["WER", "wer", "wer"];
-submitBtn.addEventListener("click", () => {
-  let options = films
-    .map((film) => {
-      return `<option value=${film}>${film}</option>`;
-    })
-    .join("\n");
-  select[1].innerHTML = options;
-});
-
-fetch("./list.json")
+let list = fetch("./list.json")
   .then(function (resp) {
     return resp.json();
   })
   .then(function (data) {
     console.log(data);
   });
+
+submitBtn.addEventListener("click", () => {
+  let inputLetter = select[0].value;
+  let re = `^${inputLetter}`;
+  let reg = new RegExp(re);
+  let films = list.filter((film) => {
+    return film.name.match(reg);
+  });
+  let options = films
+    .map((film) => {
+      return `<option value=${film.name}>${film.name}</option>`;
+    })
+    .join("\n");
+  select[1].innerHTML = options;
+});
