@@ -25,10 +25,11 @@ selectOptions();
 
 let list = fetch("./list.json")
   .then(function (resp) {
-    return resp.json()
-    .then(function(data) {
-      console.log(data);
-      return data;
+    return resp.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    return data;
   });
 
 submitBtn.addEventListener("click", () => {
