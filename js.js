@@ -27,22 +27,19 @@ let list = fetch("./list.json")
   .then(function (resp) {
     return resp.json();
   })
-  .then(customFilms(data));
-
-function customFilms(list) {
-  submitBtn.addEventListener("click", () => {
-    let inputLetter = select[0].value;
-    let re = `^${inputLetter}`;
-    let reg = new RegExp(re);
-    let films = list.filter((film) => {
-      return film.name.match(reg);
+  .then(function (data) {
+    submitBtn.addEventListener("click", () => {
+      let inputLetter = select[0].value;
+      let re = `^${inputLetter}`;
+      let reg = new RegExp(re);
+      let films = list.filter((film) => {
+        return film.name.match(reg);
+      });
+      let options = films
+        .map((film) => {
+          return `<option value=${film.name}>${film.name}</option>`;
+        })
+        .join("\n");
+      select[1].innerHTML = options;
     });
-    let options = films
-      .map((film) => {
-        return `<option value=${film.name}>${film.name}</option>`;
-      })
-      .join("\n");
-    select[1].innerHTML = options;
   });
-}
-
