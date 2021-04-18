@@ -32,7 +32,7 @@ let list = fetch("./list.json")
       let inputLetter = select[0].value;
       let re = `^${inputLetter}`;
       let reg = new RegExp(re);
-      let films = list.filter((film) => {
+      let films = data.filter((film) => {
         return film.name.match(reg);
       });
       let options = films
