@@ -25,7 +25,9 @@ selectOptions();
 
 let list = fetch("./list.json")
   .then(function (resp) {
-    return resp.json();
+    return resp.json()
+    .then((data) => {
+      console.log(data);
   });
 
 submitBtn.addEventListener("click", () => {
