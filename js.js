@@ -23,7 +23,7 @@ function selectOptions() {
 
 selectOptions();
 
-let list = fetch("./list.json")
+fetch("./list.json")
   .then(function (resp) {
     return resp.json();
   })
